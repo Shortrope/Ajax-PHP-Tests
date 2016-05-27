@@ -1,0 +1,48 @@
+body {
+  background: #246;
+}
+
+.container {
+  background: #fff;
+  padding: 30px;
+  width: 400px;
+  margin: 50px auto;
+  border-radius: 12px;
+  text-align: center;
+}
+h1 {
+  font-size: 3em;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+label, input {
+  font-size: 1.2em;
+}
+input {
+  width: 7em;
+}
+
+.output {
+  margin-top: 30px;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 90%;
+    padding: 30px 15px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  button {
+    padding: 15px;
+  }
+}

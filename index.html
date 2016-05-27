@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax PHP Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Ajax PHP Test</h1>
+    <div>
+      <label for="x">Number: </label>
+      <input type="number" id="x" name="x"/>
+    </div>
+    <button id="ajax-request-btn" type="button">Ajax Request Button</button>
+    <div id="output1" class="output"></div>
+    <div id="output2" class="output"></div>
+    <div id="output3" class="output"></div>
+    <div id="output4" class="output"></div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script>
+    
+    log("Start...")
+    // log($('#ajax-request-btn'));
+    // log($('#output'));
+    $('#ajax-request-btn').on('click', function() {
+      log("In 'Click'...")
+      $('#output1').load('hello.txt');
+      $('#output2').load('hello.php');
+      
+      // PUre JavaScript
+      // output 3
+      var request = new XMLHttpRequest();
+      request.open('POST', 'process.php');
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      // var postData = 'x=' + document.getElementById('x').valueOf();
+      request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+          log(request.getAllResponseHeaders());
+          log(request.responseText);
+          document.getElementById('output3').innerHTML = 'javascript: ' + request.responseText;
+        }
+      }
+      
+      var x = document.getElementById('x').value;
+      request.send('x=' + x);
+      
+      // jQuery Post
+      // output 4
+      $.post('process.php', {"x": $('#x').val()}).done(function (data) {
+        $('#output4').html('jQuery: ' + data);
+      });
+      log("Finished 'Click'")
+    });
+    function log(msg) { window.console.log(msg); }
+  </script>
+</body>
+
+</html>
